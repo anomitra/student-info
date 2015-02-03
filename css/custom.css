@@ -1,0 +1,27 @@
+.jumbotron {
+
+   background: rgb(204, 204, 204); /* This is for ie8 and below */
+   background: rgba(204, 204, 204, 0.75); 
+   height:100%;
+}
+.mydiv
+{
+	background: rgba(255,255,255);
+	width:100%;
+	padding-top:10%;
+	margin-top:20px
+}
+.propic
+{
+	display: block;
+    max-width:140px;
+    max-height:140px;
+    width: auto;
+    height: auto;
+}
+body {height:100%;-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;}
+html {height:100%;}
+.special,.special {height:100%;}
