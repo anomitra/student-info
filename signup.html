@@ -8,36 +8,70 @@
 <link rel="stylesheet" href="css/signup.css">
 
 <!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="css/bootstrap-theme.min.css">
 
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script src="js/signup.js"></script>
+<script src="js/validation.js"></script>
 </head>
-<body background="assets/bg4.jpg">
+<body background="assets/bg4.jpg" onload="firstfocus();">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="home.html">EduWiz</a>
+        </div>
+        <center>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="about.html">About</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="username" placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="password" placeholder="Password">
+                    </div>
+                    <button type="submit" class="btn btn-success">Sign In</button>
+                </form> 
+        </div>
+        </center>
+    </nav>
+
+
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-4 col-md-offset-3 centered column well well-sm img-rounded"	 >
 			<h3 class="text-muted text-center"> Please Sign Up Below! </h3>
-			<form role="form">
+			<form role="form" name="reg" data-toggle="validator">
 				<div class="form-group">
-					 <label for="name">Name</label><input type="email" class="form-control" id="name" />
+					 <div class="input-group"><label for="username">Name</label><input type="text" class="form-control" onblur="javascript:name_validate();" pattern="^([_A-z0-9]){3,}$" maxlength="20" id="username" placeholder="Your Name Here" required/> </div>	
+					 <span class="help-block with-errors">Up to 20 letters, numbers and underscores</span>
+				</div>		
+				<div class="form-group">
+					 <label for="roll">Roll Number</label><input type="text" class="form-control" onblur="roll_validate()" id="roll" pattern="^[0-9]*{4,7}$" required/>
 				</div>
 				<div class="form-group">
-					 <label for="roll">Roll Number</label><input type="email" class="form-control" id="roll" />
-				</div>
-				<div class="form-group">
-					 <label for="exampleInputEmail1">Email Address</label><input type="email" class="form-control" id="exampleInputEmail1" />
+					 <label for="mailid">Email Address</label><input type="email" class="form-control" onblur="mail_validate()" id="mailid" pattern="[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}" required/>
 				</div>
 				<div class="form-group-inline">
-					 <label for="exampleInputPassword1">Password</label><input type="password" class="form-control" id="exampleInputPassword1" />
+					 <label for="pwd">Password</label><input type="password" class="form-control" onblur="pass_validate()" id="pwd" required/>
 				</div>
 				<div class="form-group-inline" style="float: right; margin-right: 4px;">
-					 <label for="exampleInputPassword2">Confirm Password</label><input type="password" class="form-control" id="exampleInputPassword2" />
+					 <label for="pwd2">Confirm Password</label><input type="password" class="form-control" onblur="pass2_validate()" id="pwd2" required/>
 				</div>
 
 				<div class="form-group" style="margin-top: 20px; margin-left: 175px;">
-					 <button type="submit" class="btn btn-default">Submit</button>
+					 <button type="submit" id="subButton" class="btn btn-default">Submit</button>
 				</div>
 				 
 			</form>

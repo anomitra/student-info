@@ -1,65 +1,80 @@
-$(function () {
-    $('.button-checkbox').each(function () {
+function focusStart()
+{
+    var name=document.reg.username.focus();
+    return true;
+}
 
-        // Settings
-        var $widget = $(this),
-            $button = $widget.find('button'),
-            $checkbox = $widget.find('input:checkbox'),
-            color = $button.data('color'),
-            settings = {
-                on: {
-                    icon: 'glyphicon glyphicon-check'
-                },
-                off: {
-                    icon: 'glyphicon glyphicon-unchecked'
-                }
-            };
+function name_validate()
+{
+    var name=document.reg.username;
+    var name_len=name.value.length;
+    if(name_len == 0 || name_len >= 30 || name_len <= 5)
+    {
+        alert("Name should  be between 5 characters to 30 characters");
+        name.focus();
+        return false;
+    }
+    document.reg.roll.focus();
+    return true;
+}
 
-        // Event Handlers
-        $button.on('click', function () {
-            $checkbox.prop('checked', !$checkbox.is(':checked'));
-            $checkbox.triggerHandler('change');
-            updateDisplay();
-        });
-        $checkbox.on('change', function () {
-            updateDisplay();
-        });
+function roll_validate()
+{
+    var roll=document.reg.roll;
+    var roll_len=roll.value.length;
+    var num_check="^[0-9]*$"
+    if(roll_len <= 8 && roll_len >= 3 && roll.value.match(num_check))
+    {
+        document.reg.mailid.focus();
+        return true;
+    }
+    alert("Roll number format is incorrect.");
+    roll.focus();
+    return false;
+}
 
-        // Actions
-        function updateDisplay() {
-            var isChecked = $checkbox.is(':checked');
+function mail_validate()
+{
+    var mail=document.reg.mailid;
+    var num_check="[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}"
+    if(mail.value.match(num_check))
+    {
+        document.reg.mailid.focus();
+        return true;
+    }
+    alert("Email ID format is incorrect.");
+    mailid.focus();
+    return false;
+}
 
-            // Set the button's state
-            $button.data('state', (isChecked) ? "on" : "off");
+function pass_validate()
+{
+  var passid = document.reg.pwd;
+  var passid_len = passid.value.length;
+  var my=12
+  var mx=7
+  if (passid_len == 0 ||passid_len >= my || passid_len < mx)
+  {
+    alert("Password should not be empty / length be between "+mx+" to "+my);
+    pwd.focus();
+    return false;
+  }
+  document.registration.pwd2.focus();
+  return true;
+  }
+}
 
-            // Set the button's icon
-            $button.find('.state-icon')
-                .removeClass()
-                .addClass('state-icon ' + settings[$button.data('state')].icon);
-
-            // Update the button's color
-            if (isChecked) {
-                $button
-                    .removeClass('btn-default')
-                    .addClass('btn-' + color + ' active');
-            }
-            else {
-                $button
-                    .removeClass('btn-' + color + ' active')
-                    .addClass('btn-default');
-            }
-        }
-
-        // Initialization
-        function init() {
-
-            updateDisplay();
-
-            // Inject the icon if applicable
-            if ($button.find('.state-icon').length == 0) {
-                $button.prepend('<i class="state-icon ' + settings[$button.data('state')].icon + '"></i>');
-            }
-        }
-        init();
-    });
-});
+function pass2_validate()
+{
+  var pass2 = document.reg.pwd2;
+  var pass  = document.reg.pwd;
+  if (pass != pass2)
+  {
+    alert("Password should not be empty / length be between "+mx+" to "+my);
+    pwd.focus();
+    return false;
+  }
+  document.registration.subButton.focus();
+  return true;
+  }
+}
